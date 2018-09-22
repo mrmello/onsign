@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "browser": true
+    },
+    "rules": {
+        "strict": [0, "global"],
+        "semi": [2, "never"],
+        "func-names": ["error", "never"],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prefer-stateless-function": [0, { "ignorePureComponents": true }]
+      }
+}
