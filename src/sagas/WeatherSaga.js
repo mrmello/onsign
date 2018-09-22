@@ -5,7 +5,7 @@ import Services from '../services'
 
 function* fetchWeatherFromAPI(action) {
   const data = yield call(Services.fetchWeatherFromAPI, action.payload)
-  yield put(fetchWeatherSucceeded(data))
+  yield put(fetchWeatherSucceeded(data.data))
 }
 
 function* watcherWeatherSaga() {

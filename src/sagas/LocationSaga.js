@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { reset } from 'redux-form'
 import types from '../actions/Types'
 import { fetchLocationSucceeded, fetchWeather } from '../actions'
 import Services from '../services'
@@ -8,9 +7,8 @@ import parseGeoResult from '../services/GeoParser'
 
 function* fetchLocationFromAPI(action) {
   const data = yield call(Services.fetchLocationFromAPI, action.payload)
-  yield put(reset('formLocation'))
   const geoResponse = yield call(parseGeoResult, data)
-  yield put(fetchLocationSucceeded(geoResponse))
+  yield put(fetchLocationSucceeded(geoResponse.results[0]))
   yield put(fetchWeather(geoResponse.results[0].geometry.location))
 }
 

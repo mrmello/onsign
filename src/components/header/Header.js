@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Navbar } from 'reactstrap'
 
 const Header = ({ title }) => {
   return (
-    <div>
+    <Navbar color="light" light expand="md">
       {title}
-    </div>
+    </Navbar>
   )
 }
 Header.propTypes = {

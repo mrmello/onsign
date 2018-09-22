@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import sagas from './Sagas'
 import reducers from './Reducers'
