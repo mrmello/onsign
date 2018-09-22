@@ -1,16 +1,15 @@
 import hash from 'object-hash'
 
-export default function parseGeoResult(data) {
+export default function parseGeoResult(response) {
   return new Promise((resolve, reject) => {
-
-    const geoResponse = data.data
-    Object.keys(geoResponse.results).forEach(function(result) {
-      console.log(hash(geoResponse.results[result].geometry.location))
-    })
-    if (geoResponse) {
-      resolve(geoResponse)
+    if(response.data.status !== "OK") {
+      reject(new Error(response.data.status))
     } else {
-      reject(new Error('Unable to parse login result. No session result.'))
+      const geoResponse = response.data
+      Object.keys(geoResponse.results).forEach(function(result) {
+        console.log(hash(geoResponse.results[result].geometry.location))
+      })
+      resolve(geoResponse)
     }
   })
 }

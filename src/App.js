@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Header from './components/header/Header'
 import FormLocation from './components/formLocation/FormLocation'
-import { locationService } from './actions/Services'
+import { locationSubmitter } from './actions/Submitters'
 import LocationResult from './components/results/LocationResult'
 import WeatherResult from './components/results/WeatherResult'
+import Notification from './components/notification/Notification';
 
 class App extends Component {
   render() {
@@ -12,10 +13,11 @@ class App extends Component {
         <Header title="On Sign TV Temperature App"/>
         <div className="container">
           <div className="card mt-5">
-            <FormLocation onSubmit={locationService}/>
+            <FormLocation onSubmit={locationSubmitter}/>
             <LocationResult />
             <WeatherResult />
           </div>
+          <Notification />
         </div>
       </div>
     )

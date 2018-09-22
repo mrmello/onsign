@@ -39,6 +39,7 @@ class LocationResults extends Component {
     const location = this.filterAttributes()
     return (
       <div className="card-body border-bottom">
+        <h5 className="card-title">Geolocation Result</h5>
         {this.renderAttributes(location)}
       </div>
     )

@@ -9,15 +9,16 @@ class WeatherResults extends Component {
     const {lastWeather, searchedTerm } = this.props
     return (
       <div className="card-body text-center">
+      <h5 className="card-title">Weather</h5>
         {`The Temperature at ${searchedTerm} is `}
-        <span className="h5">{`${lastWeather.main.temp} °C`}</span>
+        <span className="h5">{`${lastWeather} °C`}</span>
       </div>
     )
   }
 }
 
 WeatherResults.propTypes = {
-  lastWeather: PropTypes.object,
+  lastWeather: PropTypes.number,
   searchedTerm: PropTypes.string
 }
 

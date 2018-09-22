@@ -1,15 +1,25 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import types from '../actions/Types'
-import { fetchLocationSucceeded, fetchWeather } from '../actions'
+import { fetchLocationSucceeded, fetchWeather, dimissNotification, requestFailed } from '../actions'
 import Services from '../services'
-//import Store from '../store'
+import Store from '../store'
 import parseGeoResult from '../services/GeoParser'
+import { waitToDimissNotification } from '../utils'
 
 function* fetchLocationFromAPI(action) {
-  const data = yield call(Services.fetchLocationFromAPI, action.payload)
-  const geoResponse = yield call(parseGeoResult, data)
-  yield put(fetchLocationSucceeded(geoResponse.results[0]))
-  yield put(fetchWeather(geoResponse.results[0].geometry.location))
+  try {
+    const data = yield call(Services.fetchLocationFromAPI, action.payload)
+    const geoResponse = yield call(parseGeoResult, data)
+    yield put(fetchLocationSucceeded(geoResponse.results[0]))
+    yield put(fetchWeather(geoResponse.results[0].geometry.location))
+  } catch (e) {
+    console.error(e) //eslint-disable-line no-console
+    yield put(requestFailed(new Error(`Awn! Request to geocoding failed: ${e.message}`)))
+    yield waitToDimissNotification().then(async() =>{
+        Store.dispatch(dimissNotification())
+      }
+    )
+  }
 }
 
 // function fetchWeatherFromAPI() {
