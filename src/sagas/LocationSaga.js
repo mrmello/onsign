@@ -10,8 +10,8 @@ function* fetchLocationFromAPI(action) {
   try {
     const data = yield call(Services.fetchLocationFromAPI, action.payload)
     const geoResponse = yield call(parseGeoResult, data)
-    yield put(fetchLocationSucceeded(geoResponse.results[0]))
-    yield put(fetchWeather(geoResponse.results[0].geometry.location))
+    yield put(fetchLocationSucceeded(geoResponse))
+    yield put(fetchWeather(data.data.results[0].geometry.location))
   } catch (e) {
     console.error(e) //eslint-disable-line no-console
     yield put(requestFailed(new Error(`Awn! Request to geocoding failed: ${e.message}`)))

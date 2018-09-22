@@ -8,6 +8,7 @@ import Store from '../store'
 
 function* fetchWeatherFromAPI(action) {
   try {
+    console.log(Store.getState())
     const data = yield call(Services.fetchWeatherFromAPI, action.payload)
     const weatherResponse = yield call(parseWeatherResult, data)
     yield put(fetchWeatherSucceeded(weatherResponse))

@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         locations: [...state.locations, action.payload],
-        lastLocation: action.payload
+        lastLocation: action.payload[Object.keys(action.payload)[1]]
       }
     default:
       return state
