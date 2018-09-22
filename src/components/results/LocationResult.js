@@ -38,7 +38,7 @@ class LocationResults extends Component {
     if(!this.props.lastLocation) return null
     const location = this.filterAttributes()
     return (
-      <div>
+      <div className="card-body border-bottom">
         {this.renderAttributes(location)}
       </div>
     )

@@ -8,11 +8,15 @@ import WeatherResult from './components/results/WeatherResult'
 class App extends Component {
   render() {
     return (
-      <div>
+      <div >
         <Header title="On Sign TV Temperature App"/>
-        <FormLocation onSubmit={locationService}/>
-        <LocationResult />
-        <WeatherResult />
+        <div className="container">
+          <div className="card mt-5">
+            <FormLocation onSubmit={locationService}/>
+            <LocationResult />
+            <WeatherResult />
+          </div>
+        </div>
       </div>
     )
   }

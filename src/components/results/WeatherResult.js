@@ -6,11 +6,11 @@ class WeatherResults extends Component {
 
   render() {
     if(!this.props.lastWeather) return null
-    //const weather = this.filterAttributes()
     const {lastWeather, searchedTerm } = this.props
     return (
-      <div>
-        {`The Temperature at ${searchedTerm} is ${lastWeather.main.temp} °C`}
+      <div className="card-body text-center">
+        {`The Temperature at ${searchedTerm} is `}
+        <span className="h5">{`${lastWeather.main.temp} °C`}</span>
       </div>
     )
   }
@@ -22,7 +22,6 @@ WeatherResults.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     lastWeather: state.weather.lastWeather,
     searchedTerm: state.location.searchedTerm.location

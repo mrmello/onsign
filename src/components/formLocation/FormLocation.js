@@ -6,17 +6,28 @@ const FormLocation = (props) => {
   const { handleSubmit, pristine, submitting } = props
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Field
-        component="input"
-        type="text"
-        name="location"/>
-      <button
-        type="submit"
-        disabled={pristine || submitting}>
-          Show Temperature
-      </button>
-    </form>
+    <div>
+      <div className="card-header">
+        Current Temperature For Location
+      </div>
+      <div className="card-body">
+        <form onSubmit={handleSubmit}>
+          <div >
+            <Field
+              className="form-control"
+              component="input"
+              type="text"
+              name="location"/>
+              <button
+              className="btn btn-primary mt-2"
+              type="submit"
+              disabled={pristine || submitting}>
+                Show Temperature
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   )
 }
 
