@@ -1,14 +1,15 @@
 import types from '../actions/Types'
 
 const initialState = {
-  location: []
+  weather: []
 }
 export default function(state = initialState, action) {
   switch(action.type){
-    case types.FETCH_LOCATION_SUCCEEDED:
+    case types.FETCH_WEATHER_SUCCEEDED:
+    console.log(action)
       return {
         ...state,
-        location: [...state.location, action.payload.data]
+        weather: action.payload
       }
     default:
       return state
