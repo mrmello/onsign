@@ -1,3 +1,25 @@
+How to run
+----------
+#### Via Docker (must have Docker running)
+
+ `$ git clone https://github.com/mrmello/onsign.git`  
+ `$ cd onsing`  
+ `$ docker build -t onsign .`  
+ `$ docker run -p 8080:80 onsign`  
+ 
+ Production optmized build will be available on http://localhost:8080/
+ 
+ #### Via yarn
+
+ `$ git clone https://github.com/mrmello/onsign.git`  
+ `$ cd onsing`  
+ `$ yarn install`  
+ `$ yarn run build`
+ `$ yarn global add serve` 
+ `$ serve -s build`
+ 
+ Production optmized build will be available on http://localhost:5000/
+
 Components
 ----------
 
