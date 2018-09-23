@@ -24,6 +24,7 @@ Considerations
 ----------
 ### Assumptions
  - It was assumed that the failure of the second request (OpenWeatherAPI) should not interfere on the results for the geolocation. So, if the second request fails, the results of the Google Geolocation API will still be shown to the user.
+ - It was assumed that the user enter valid geographic coordinates, the application should perform a reverse search with the google API. If the coordinates are not valid, the application will fire the normal search.
 
 ### Folder Structure
  - The folder structuring pattern is based on the Components. In each component folder, when necessary, lays the respective reducer and saga for that given component. In this way, as the application grows, it is easier to find out wich component uses wich reducer/saga and also avoids having inumerous "index.js" files
