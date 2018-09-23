@@ -29,6 +29,18 @@ Considerations
 ### Folder Structure
  - The folder structuring pattern is based on the Components. In each component folder, when necessary, lays the respective reducer and saga for that given component. In this way, as the application grows, it is easier to find out wich component uses wich reducer/saga and also avoids having inumerous "index.js" files
 
+### External Libraries
+
+ - `axios` Useful lib to make requests to remote APIs   
+ - `bootstrap` For styling purposes   
+ - `object-hash` A helper lib to create hashed values as I wanted to keep a unique key to fetched weatehers and save to localStorage   
+ - `react-redux` Redux middleware   
+ - `react-scripts` For build purposes   
+ - `redux` Redux Middleware   
+ - `redux-form` The redux library helper for dealing with forms   
+ - `redux-saga` A function generator middleware to the redux store   
+ 
+
 Components
 ----------
 
