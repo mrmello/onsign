@@ -20,12 +20,13 @@ export const fetchWeather = (payload) => ({
   payload: payload
 })
 
-export const fetchWeatherFailed = () => ({
-  type: types.FETCH_WEATHER_FAILED
-})
-
 export const fetchWeatherSucceeded = (payload) => ({
   type: types.FETCH_WEATHER_SUCCEEDED,
+  payload: payload
+})
+
+export const weatherCacheHit = (payload) => ({
+  type: types.RESPONSE_FROM_CACHE,
   payload: payload
 })
 

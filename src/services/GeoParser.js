@@ -1,4 +1,3 @@
-import hash from 'object-hash'
 
 export default function parseGeoResult(response) {
   return new Promise((resolve, reject) => {
@@ -21,10 +20,9 @@ export default function parseGeoResult(response) {
           location.push({attr: "Country", value : component.long_name})
         }
       })
-      const hashedLocation = hash(lastLocation.geometry.location)
       const geoResponse = {
         coordinates: lastLocation.geometry.location,
-        [hashedLocation] : location
+        filteredData : location,
       }
       resolve(geoResponse)
     }

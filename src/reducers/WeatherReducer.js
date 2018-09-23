@@ -1,16 +1,26 @@
 import types from '../actions/Types'
 
 const initialState = {
-  weathers: [],
-  lastWeather: null
+  fetchedWeathers: [],
+  actualWeather: null
 }
 export default function(state = initialState, action) {
   switch(action.type){
     case types.FETCH_WEATHER_SUCCEEDED:
       return {
         ...state,
-        weathers: [...state.weathers, action.payload],
-        lastWeather: action.payload
+        fetchedWeathers: [...state.fetchedWeathers, action.payload],
+        actualWeather: action.payload
+      }
+    case types.RESPONSE_FROM_CACHE:
+      return {
+        ...state,
+        actualWeather: action.payload
+      }
+    case types.REQUEST_FAILED:
+      return {
+        ...state,
+        actualWeather: null
       }
     default:
       return state

@@ -15,25 +15,25 @@ class LocationResults extends Component {
   }
 
   render() {
-    if(!this.props.lastLocation) return null
-    const { lastLocation } = this.props
+    if(!this.props.actualLocation) return null
+    const { actualLocation } = this.props
     return (
       <div className="card-body border-bottom text-center">
         <h5 className="card-title">Geolocation Result</h5>
-        {this.renderAttributes(lastLocation)}
+        {this.renderAttributes(actualLocation)}
       </div>
     )
   }
 }
 
 LocationResults.propTypes = {
-  lastLocation: PropTypes.array
+  actualLocation: PropTypes.array
 }
 
 
 function mapStateToProps(state) {
   return {
-    lastLocation: state.location.lastLocation
+    actualLocation: state.location.actualLocation
   }
 }
 export default connect(mapStateToProps, null)(LocationResults)
