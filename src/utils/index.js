@@ -1,5 +1,5 @@
 import hash from 'object-hash'
-
+const LAT_LNG_PATTERN = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/g
 /**
  * Waits for 5 seconds to dismiss the notification
  */
@@ -90,4 +90,15 @@ export function saveWeatherData(data){
   } else {
     localStorage.setItem("weatherData",  JSON.stringify([data]))
   }
+}
+
+/**
+ * Returns true if the searched term is a valid geographic coordinate
+ */
+export function isReverseSearch(search) {
+  var regx = new RegExp(LAT_LNG_PATTERN)
+  if(search.location.match(regx)) {
+    return true
+  }
+  return false
 }

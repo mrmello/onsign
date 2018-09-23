@@ -4,7 +4,7 @@ import { fetchLocationSucceeded, fetchWeather, dimissNotification, requestFailed
 import Services from '../../services'
 import Store from '../../store'
 import parseGeoResult from '../../services/GeoParser'
-import { waitToDimissNotification } from '../../utils'
+import { waitToDimissNotification, isReverseSearch } from '../../utils'
 
 /**
  * Calls the service to fetch location data and if successful returns de data and
@@ -13,7 +13,13 @@ import { waitToDimissNotification } from '../../utils'
  */
 function* fetchLocationFromAPI(action) {
   try {
-    const data = yield call(Services.fetchLocationFromAPI, action.payload)
+    let data
+    if(isReverseSearch(action.payload)){
+      const coordinates = action.payload.location.replace(/\s/g, "")
+      data = yield call(Services.fetchReverseLocation, coordinates)
+    } else {
+      data = yield call(Services.fetchLocationFromAPI, action.payload)
+    }
     const geoResponse = yield call(parseGeoResult, data)
     yield put(fetchLocationSucceeded(geoResponse))
     yield put(fetchWeather(geoResponse.coordinates))
