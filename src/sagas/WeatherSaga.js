@@ -2,17 +2,17 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import types from '../actions/Types'
 import { fetchWeatherSucceeded, requestFailed, dimissNotification, weatherCacheHit } from '../actions'
 import Services from '../services'
-import { waitToDimissNotification, createLocationThreeDecimalPrecision, createHashedValue } from '../utils'
+import { waitToDimissNotification, createLocationThreeDecimalPrecision, cacheHit, saveWeatherData, getDataFromLocalStorage } from '../utils'
 import parseWeatherResult from '../services/WeatherParser'
 import Store from '../store'
 
 function* fetchWeather(action) {
   try {
-    const { fetchedWeathers } = Store.getState().weather
+    let fetchedWeathers = getDataFromLocalStorage()
     let keyContains
     const location = createLocationThreeDecimalPrecision(action.payload)
     Object.keys(fetchedWeathers).forEach(function(key){
-      if(fetchedWeathers[key].hashedLocation === createHashedValue(location)){
+      if(cacheHit(fetchedWeathers[key], location)) {
         keyContains = key
       }
     })
@@ -21,11 +21,12 @@ function* fetchWeather(action) {
     } else {
       const data = yield call(Services.fetchWeatherFromAPI, action.payload)
       const weatherResponse = yield call(parseWeatherResult, data, action.payload)
+      saveWeatherData(weatherResponse)
       yield put(fetchWeatherSucceeded(weatherResponse))
     }
   } catch (e) {
     console.error(e) //eslint-disable-line no-console
-    yield put(requestFailed(new Error(`Awn! Request to wheater failed: ${e.message}`)))
+    yield put(requestFailed(new Error("Ops! Request to OpenWeather failed :(")))
     yield waitToDimissNotification().then(async() =>{
         Store.dispatch(dimissNotification())
       }

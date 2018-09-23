@@ -1,4 +1,4 @@
-import { createLocationThreeDecimalPrecision, createHashedValue } from '../utils'
+import { createLocationThreeDecimalPrecision, createHashedValue, oneHourFromNow } from '../utils'
 
 export default function weatherParser(response, requestedLocation) {
   return new Promise((resolve, reject) => {
@@ -9,7 +9,8 @@ export default function weatherParser(response, requestedLocation) {
       const weatherResult = {
         hashedLocation: createHashedValue(location),
         requestedLocation: location,
-        temp: response.data.main.temp
+        temp: response.data.main.temp,
+        expiresOn: oneHourFromNow()
       }
       resolve(weatherResult)
     }

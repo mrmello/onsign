@@ -7,8 +7,10 @@ class Notification extends Component {
     const { errorMessage } = this.props
     if(!errorMessage) return null
     return (
-      <div className="alert alert-danger" role="alert">
-        {errorMessage}
+      <div className="mt-5">
+          <div className="alert alert-danger" align="center">
+            {errorMessage}
+          </div>
       </div>
     )
   }

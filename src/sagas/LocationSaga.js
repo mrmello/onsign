@@ -14,7 +14,7 @@ function* fetchLocationFromAPI(action) {
     yield put(fetchWeather(data.data.results[0].geometry.location))
   } catch (e) {
     console.error(e) //eslint-disable-line no-console
-    yield put(requestFailed(new Error(`Awn! Request to geocoding failed: ${e.message}`)))
+    yield put(requestFailed(new Error("Ops! Request to Goecoding failed :(")))
     yield waitToDimissNotification().then(async() =>{
         Store.dispatch(dimissNotification())
       }

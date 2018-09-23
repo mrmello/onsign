@@ -4,7 +4,7 @@ import FormLocation from './components/formLocation/FormLocation'
 import { locationSubmitter } from './actions/Submitters'
 import LocationResult from './components/results/LocationResult'
 import WeatherResult from './components/results/WeatherResult'
-import Notification from './components/notification/Notification';
+import Notification from './components/notification/Notification'
 
 class App extends Component {
   render() {
