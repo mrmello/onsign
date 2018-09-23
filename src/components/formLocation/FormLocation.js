@@ -36,8 +36,7 @@ const FormLocation = (props) => {
 
 FormLocation.propTypes = {
   /**
-   * Function passed to redux-form tha will be called when the user
-   * submits the form
+   * Function passed to redux-form tha will be called when the user submits the form
    */
   handleSubmit: PropTypes.func.isRequired,
   /**
