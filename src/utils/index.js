@@ -26,8 +26,7 @@ export function oneHourFromNow() {
 }
 
 function hasExpired(cachedTime) {
-  let now = new Date()
-  if(now > cachedTime) {
+  if(new Date() > new Date(cachedTime)) {
     return true
   }
   return false
@@ -50,8 +49,18 @@ export function getDataFromLocalStorage() {
 export function saveWeatherData(data){
   if(localStorage.getItem("weatherData")) {
     let savedData = JSON.parse(localStorage.getItem("weatherData"))
-    savedData.push(data)
-    localStorage.setItem("weatherData", JSON.stringify(savedData))
+    let keyContains
+    Object.keys(savedData).forEach(function(key){
+      if(savedData[key].hashedLocation === data.hashedLocation) {
+        keyContains = key
+      }
+    })
+    if(keyContains){
+      savedData[keyContains].push(data)
+    } else {
+      savedData.push(data)
+      localStorage.setItem("weatherData", JSON.stringify(savedData))
+    }
   } else {
     localStorage.setItem("weatherData",  JSON.stringify([data]))
   }
