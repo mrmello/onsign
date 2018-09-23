@@ -6,13 +6,19 @@ import Store from '../store'
 import parseGeoResult from '../services/GeoParser'
 import { waitToDimissNotification } from '../utils'
 
+/**
+ * Calls the service to fetch location data and if successful returns de data and
+ * yields the weather api request. In case the request fails, yeilds the appropriated
+ * action
+ */
 function* fetchLocationFromAPI(action) {
   try {
     const data = yield call(Services.fetchLocationFromAPI, action.payload)
     const geoResponse = yield call(parseGeoResult, data)
     yield put(fetchLocationSucceeded(geoResponse))
-    yield put(fetchWeather(data.data.results[0].geometry.location))
+    yield put(fetchWeather(geoResponse.coordinates))
   } catch (e) {
+    //decided for console.error to log the error
     console.error(e) //eslint-disable-line no-console
     yield put(requestFailed(new Error("Ops! Request to Goecoding failed :(")))
     yield waitToDimissNotification().then(async() =>{
@@ -21,15 +27,11 @@ function* fetchLocationFromAPI(action) {
     )
   }
 }
-
-// function fetchWeatherFromAPI() {
-//   // let locations = {}
-//   // yield put(geoResponse.results[0].geometry.location)
-//   // Object.keys(geoResponse.results).forEach(function(result) {
-//   //   console.log(geoResponse.results[result].geometry.location)
-//   // })
-// }
-
+/**
+ * Watches for the specific action an acts as a middleware to run the request
+ * to the Google Geocoding Location API and then passes the data to the
+ * LocationReducer
+ */
 function* watcherLocationSaga() {
   yield takeLatest(types.FETCH_LOCATION_REQUESTED, fetchLocationFromAPI)
 }

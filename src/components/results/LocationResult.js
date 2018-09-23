@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+/**
+ * Component responsible for showing the geolocation results for
+ * a given user input. It runs independently from the weather api,
+ * if an error occurs whiling fetching the weather, this component
+ * won't be affected
+ */
 class LocationResults extends Component {
 
   renderAttributes(location) {
@@ -27,6 +33,9 @@ class LocationResults extends Component {
 }
 
 LocationResults.propTypes = {
+  /**
+   * Array containing the retrieved geolocation information.
+   */
   actualLocation: PropTypes.array
 }
 

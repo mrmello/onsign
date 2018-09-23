@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+/**
+ * Notification component is responsible for showing the notification alert
+ * when any error occurs during the api requests
+ */
 class Notification extends Component {
   render(){
     const { errorMessage } = this.props
@@ -17,6 +21,9 @@ class Notification extends Component {
 }
 
 Notification.propTypes = {
+  /**
+   * String containing the message to be displayed in the alert
+   */
   errorMessage: PropTypes.string
 }
 

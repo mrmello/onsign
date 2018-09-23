@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
+/**
+ * Shows the weather temperature of a given location
+ */
 class WeatherResults extends Component {
 
   render() {
@@ -19,6 +21,11 @@ class WeatherResults extends Component {
 }
 
 WeatherResults.propTypes = {
+  /**
+   * Object containing weather data. Its attributes are:
+   *  - temp: current temperature, in number format
+   *  - requestedLocation: object composed by lat and lng coordinates
+   */
   actualWeather: PropTypes.object
 }
 

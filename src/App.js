@@ -6,6 +6,10 @@ import LocationResult from './components/results/LocationResult'
 import WeatherResult from './components/results/WeatherResult'
 import Notification from './components/notification/Notification'
 
+/**
+ * The most parent component. Composed by the Header, FormLocation, LocationResult,
+ * WeatherResult and Notification components.
+ */
 class App extends Component {
   render() {
     return (

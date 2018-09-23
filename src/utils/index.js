@@ -1,5 +1,8 @@
 import hash from 'object-hash'
 
+/**
+ * Waits for 5 seconds to dismiss the notification
+ */
 export function waitToDimissNotification() {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -8,6 +11,9 @@ export function waitToDimissNotification() {
   })
 }
 
+/**
+ * Creates an latitude/longitude object with three decimal case precision
+ */
 export function createLocationThreeDecimalPrecision(location) {
   let obj = {}
   obj.lat = location.lat.toFixed(3)
@@ -15,16 +21,26 @@ export function createLocationThreeDecimalPrecision(location) {
   return obj
 }
 
+/**
+ * Hashes an object using the object-hash lib
+ */
 export function createHashedValue(obj){
   return hash(obj)
 }
 
+/**
+ * Returns a Date with one hour ahead of the current time.
+ * Used for the cache "expiresOn" attribute
+ */
 export function oneHourFromNow() {
   let now = new Date(), oneHour = new Date()
   oneHour.setHours(now.getHours()+1)
   return oneHour
 }
 
+/**
+ * Compares if the current time is after the cache expiration value
+ */
 function hasExpired(cachedTime) {
   if(new Date() > new Date(cachedTime)) {
     return true
@@ -32,6 +48,10 @@ function hasExpired(cachedTime) {
   return false
 }
 
+/**
+ * Returns true when the weather was already requested within a one hour window
+ * for a given three decimal cases precision latitude/longitude
+ */
 export function cacheHit(cachedValue, location) {
   if(cachedValue.hashedLocation === createHashedValue(location) && !hasExpired(cachedValue.expiresOn)){
     return true
@@ -39,6 +59,9 @@ export function cacheHit(cachedValue, location) {
   return false
 }
 
+/**
+ * Retrieves the weatherData array from the localStorage
+ */
 export function getDataFromLocalStorage() {
   if(!localStorage.getItem("weatherData")) {
     return []
@@ -46,6 +69,9 @@ export function getDataFromLocalStorage() {
   return JSON.parse(localStorage.getItem("weatherData"))
 }
 
+/**
+ * Store new fetched data from the weather API or updates the expired ones
+ */
 export function saveWeatherData(data){
   if(localStorage.getItem("weatherData")) {
     let savedData = JSON.parse(localStorage.getItem("weatherData"))
@@ -56,11 +82,11 @@ export function saveWeatherData(data){
       }
     })
     if(keyContains){
-      savedData[keyContains].push(data)
+      savedData.splice(keyContains, 1, data)
     } else {
       savedData.push(data)
-      localStorage.setItem("weatherData", JSON.stringify(savedData))
     }
+    localStorage.setItem("weatherData", JSON.stringify(savedData))
   } else {
     localStorage.setItem("weatherData",  JSON.stringify([data]))
   }
