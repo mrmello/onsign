@@ -1,4 +1,4 @@
-import types from '../actions/Types'
+import types from '../../actions/Types'
 // initial state for when there is no information to show
 const initialState = {
   actualLocation: null

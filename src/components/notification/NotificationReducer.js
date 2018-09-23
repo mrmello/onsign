@@ -1,4 +1,4 @@
-import types from '../actions/Types'
+import types from '../../actions/Types'
 // initial state when there is no message to show
 const initialState = {
   message: null

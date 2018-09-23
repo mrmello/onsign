@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import types from '../actions/Types'
-import { fetchLocationSucceeded, fetchWeather, dimissNotification, requestFailed } from '../actions'
-import Services from '../services'
-import Store from '../store'
-import parseGeoResult from '../services/GeoParser'
-import { waitToDimissNotification } from '../utils'
+import types from '../../actions/Types'
+import { fetchLocationSucceeded, fetchWeather, dimissNotification, requestFailed } from '../../actions'
+import Services from '../../services'
+import Store from '../../store'
+import parseGeoResult from '../../services/GeoParser'
+import { waitToDimissNotification } from '../../utils'
 
 /**
  * Calls the service to fetch location data and if successful returns de data and
@@ -18,8 +18,6 @@ function* fetchLocationFromAPI(action) {
     yield put(fetchLocationSucceeded(geoResponse))
     yield put(fetchWeather(geoResponse.coordinates))
   } catch (e) {
-    //decided for console.error to log the error
-    console.error(e) //eslint-disable-line no-console
     yield put(requestFailed(new Error("Ops! Request to Goecoding failed :(")))
     yield waitToDimissNotification().then(async() =>{
         Store.dispatch(dimissNotification())

@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects'
-import locationSaga from '../sagas/LocationSaga'
-import weatherSaga from '../sagas/WeatherSaga'
+import locationSaga from '../components/locationResults/LocationSaga'
+import weatherSaga from '../components/weatherResults/WeatherSaga'
 
 /**
  * Runs the saga watchers to work as a middleware for the redux store

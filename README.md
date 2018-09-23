@@ -43,21 +43,7 @@ Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
 title|string|yes||The string value to be shown in the header
 -----
-**src/components/notification/Notification.js**
-
-### 1. Notification
-
-Notification component is responsible for showing the notification alert
-when any error occurs during the api requests   
-
-
-
-
-Property | Type | Required | Default value | Description
-:--- | :--- | :--- | :--- | :---
-errorMessage|string|no||String containing the message to be displayed in the alert
------
-**src/components/results/LocationResult.js**
+**src/components/locationResults/LocationResults.js**
 
 ### 1. LocationResults
 
@@ -73,7 +59,21 @@ Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
 actualLocation|array|no||Array containing the retrieved geolocation information.
 -----
-**src/components/results/WeatherResult.js**
+**src/components/notification/Notification.js**
+
+### 1. Notification
+
+Notification component is responsible for showing the notification alert
+when any error occurs during the api requests   
+
+
+
+
+Property | Type | Required | Default value | Description
+:--- | :--- | :--- | :--- | :---
+errorMessage|string|no||String containing the message to be displayed in the alert
+-----
+**src/components/weatherResults/WeatherResults.js**
 
 ### 1. WeatherResults
 

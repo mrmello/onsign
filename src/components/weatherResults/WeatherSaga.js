@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import types from '../actions/Types'
-import { fetchWeatherSucceeded, requestFailed, dimissNotification, weatherCacheHit } from '../actions'
-import Services from '../services'
-import { waitToDimissNotification, createLocationThreeDecimalPrecision, cacheHit, saveWeatherData, getDataFromLocalStorage } from '../utils'
-import parseWeatherResult from '../services/WeatherParser'
-import Store from '../store'
+import types from '../../actions/Types'
+import { fetchWeatherSucceeded, requestFailed, dimissNotification, weatherCacheHit } from '../../actions'
+import Services from '../../services'
+import { waitToDimissNotification, createLocationThreeDecimalPrecision, cacheHit, saveWeatherData, getDataFromLocalStorage } from '../../utils'
+import parseWeatherResult from '../../services/WeatherParser'
+import Store from '../../store'
 
 /**
  * Takes in a payload and looks for it in the cache.
@@ -31,8 +31,6 @@ function* fetchWeather(action) {
       yield put(fetchWeatherSucceeded(weatherResponse)) // yields value from API
     }
   } catch (e) {
-    //decided for console.error to log the error
-    console.error(e) //eslint-disable-line no-console
     yield put(requestFailed(new Error("Ops! Request to OpenWeather failed :(")))
     yield waitToDimissNotification().then(async() =>{
         Store.dispatch(dimissNotification())

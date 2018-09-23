@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Header from './components/header/Header'
 import FormLocation from './components/formLocation/FormLocation'
 import { locationSubmitter } from './actions/Submitters'
-import LocationResult from './components/results/LocationResult'
-import WeatherResult from './components/results/WeatherResult'
+import LocationResults from './components/locationResults/LocationResults'
+import WeatherResults from './components/weatherResults/WeatherResults'
 import Notification from './components/notification/Notification'
 
 /**
@@ -18,8 +18,8 @@ class App extends Component {
         <div className="container">
           <div className="card mt-5">
             <FormLocation onSubmit={locationSubmitter}/>
-            <LocationResult />
-            <WeatherResult />
+            <LocationResults />
+            <WeatherResults />
           </div>
           <Notification />
         </div>
