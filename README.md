@@ -3,7 +3,7 @@ How to run
 #### Via Docker (must have Docker running)
 
  `$ git clone https://github.com/mrmello/onsign.git`  
- `$ cd onsing`  
+ `$ cd onsign`  
  `$ docker build -t onsign .`  
  `$ docker run -p 8080:80 onsign`  
  
@@ -12,7 +12,7 @@ How to run
  #### Via yarn
 
  `$ git clone https://github.com/mrmello/onsign.git`  
- `$ cd onsing`  
+ `$ cd onsign`  
  `$ yarn install`  
  `$ yarn run build`  
  `$ yarn global add serve`   
